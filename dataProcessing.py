@@ -2,6 +2,20 @@ import pandas as pd
 from ohmysportsfeedspy import MySportsFeeds
 import sys
 
+
+
+'''
+Ideas
+- Build a time series for each team with players and corresponding stats
+- ex steph_curry_3pperc,steph_curry_trueshooting etc
+- Build the same for all players all stats for a given team as time series in a CSV file along with win or lose
+- Hence there are as many CSV as there are teams
+- Use a teams time series and the correspoding opponents and train the network 
+- obviously use previous game stats, or moving average of 3 previous, or all the three previous games per team as inputs to the 
+N/W
+- Do all the above and compare performance.
+'''
+
 def buildScheduleList(pathToSchedule):       
     raw_df = pd.read_csv(pathToSchedule)
     df = pd.DataFrame()
@@ -29,3 +43,4 @@ def main():
     getDailyPlayerStatsData(df)
 if __name__ == '__main__':
     main()
+
