@@ -22,10 +22,15 @@ def getInitialData(pathToData):
     # '#Away Team Abbr.'- 4, '#Away Team City'- 5, '#Away Team Name'- 6, '#Home Team ID'- 7, 
     # '#Home Team Abbr.'- 8, '#Home Team City'- 9, '#Home Team Name'- 10, '#Location- 11']"]
     df = pd.DataFrame()
-    print(raw_df.columns.tolist())
-    #df = pd.DataFrame([(row[0].split()[1]).replace('-','').replace(',','').replace("'",'') for row in raw_df.values],columns=["Game Date"])
-    #df.drop_duplicates(inplace=True)
-    #df.to_csv('nba_schedule_regular_20162017.csv')
+    #print(raw_df.columns.tolist())
+    #print([row[0].split()[10].replace(',','').replace("'",'') for row in raw_df.values])
+    df = pd.DataFrame([row[0].split()[10].replace(',','').replace("'",'') for row in raw_df.values],columns=["Game Date"])
+    df.drop_duplicates(inplace=True)
+    df.to_csv('nba_team_names.csv')
+    
+    df = pd.DataFrame([(row[0].split()[1]).replace('-','').replace(',','').replace("'",'') for row in raw_df.values],columns=["Game Date"])
+    df.drop_duplicates(inplace=True)
+    df.to_csv('nba_schedule_regular_20162017.csv')
     return df
  
 def getDailyPlayerStatsData(df):
